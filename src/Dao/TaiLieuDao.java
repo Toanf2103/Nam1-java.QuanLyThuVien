@@ -249,23 +249,37 @@ public class TaiLieuDao {
         }
         return bao;
     }
+    
+    //Sửa 1 sách
     public int editTaiLieu(Sach sach){
         
         Connection connect = Connect.getJDBCConection();
-        String sql = " UPDATE tailieu SET tenNXB=?, soBanPhatHanh=?, tenTacGia=?, soTrang=? WHERE maTaiLieu=?";
-        
+        String sql = " UPDATE tailieu SET tenNXB=?, soBanPhatHanh=?, tenTacGia=?, soTrang=? WHERE tailieu.maTaiLieu=?";
+           
         PreparedStatement preparedStatement;
         try {
             preparedStatement = connect.prepareStatement(sql);
             preparedStatement.setString(1,sach.getTenNhaXuatBan());
+            
             preparedStatement.setInt(2,sach.getSoBanPhatHanh());
             
             preparedStatement.setString(3,sach.getTenTacGia());
             preparedStatement.setInt(4,sach.getSoTrang());
+            
+            
+            
             preparedStatement.setInt(5,sach.getMaTaiLieu());
             
+//            System.out.println("day");
+//            System.out.println(sach.getTenNhaXuatBan());
+//            System.out.println(sach.getSoBanPhatHanh());
+//            System.out.println(sach.getTenTacGia());
+//            System.out.println(sach.getSoTrang());
+//            System.out.println(sach.getMaTaiLieu());
+//            System.out.println("end");
+            
             int rs =preparedStatement.executeUpdate();
-            System.out.println(rs);
+            
              connect.close();
             return 1;
         } catch (SQLException ex) {
@@ -275,13 +289,16 @@ public class TaiLieuDao {
             
         return 0;
     }
+    
+    //Sửa 1 tạp chí
     public int editTaiLieu(TapChi tapChi){
         
         Connection connect = Connect.getJDBCConection();
         String sql = " UPDATE tailieu SET tenNXB=?, soBanPhatHanh=?, soPhatHanh=?, thangPhatHanh=? WHERE maTaiLieu=?";
-        System.out.println("dasdsa");
+        
         PreparedStatement preparedStatement;
         try {
+            
             preparedStatement = connect.prepareStatement(sql);
             preparedStatement.setString(1,tapChi.getTenNhaXuatBan());
             preparedStatement.setInt(2,tapChi.getSoBanPhatHanh());
@@ -291,7 +308,7 @@ public class TaiLieuDao {
             preparedStatement.setInt(5,tapChi.getMaTaiLieu());
              
             int rs =preparedStatement.executeUpdate();
-            System.out.println(rs);
+   
              connect.close();
             return 1;
         } catch (SQLException ex) {
@@ -301,6 +318,8 @@ public class TaiLieuDao {
             
         return 0;
     }
+    
+    //Sửa 1 báo
     public int editTaiLieu(Bao bao){
         
         Connection connect = Connect.getJDBCConection();
@@ -318,7 +337,7 @@ public class TaiLieuDao {
            preparedStatement.setInt(5,bao.getMaTaiLieu());
            
             int rs =preparedStatement.executeUpdate();
-            System.out.println(rs);
+            
              connect.close();
             return 1;
         } catch (SQLException ex) {

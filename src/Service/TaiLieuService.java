@@ -66,15 +66,15 @@ public class TaiLieuService {
     }
     
     public int editTaiLieu(Sach sach){
-        System.out.println("1");
+        
         return taiLieuDao.editTaiLieu(sach);
     }
     public int editTaiLieu(TapChi tapChi){
-        System.out.println("1");
+        
         return taiLieuDao.editTaiLieu(tapChi);
     }
     public int editTaiLieu(Bao bao){
-        System.out.println("1");
+        
         return taiLieuDao.editTaiLieu(bao);
     }
 }

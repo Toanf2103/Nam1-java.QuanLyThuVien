@@ -33,45 +33,45 @@ public class chiTietTaiLieu extends javax.swing.JFrame {
         taiLieuService = new TaiLieuService();
         taiLieu = taiLieuService.getTaiLieu(i);
         editEndBT.setVisible(false);
-        setLoaiTaiLieu() ;
+        setLoaiTaiLieu();
         editSoPhatHanh.setModel(new SpinnerNumberModel(1, 1, 100, 1));
         editLoai.setSelectedItem(taiLieu.getLoaiTaiLieu());
         editNXB.setText(taiLieu.getTenNhaXuatBan());
         editSoLg.setValue(taiLieu.getSoBanPhatHanh());
-        setNgayPhatHanh(Integer.valueOf(editThang.getSelectedItem().toString()));setNgayPhatHanh();
+        setNgayPhatHanh(Integer.valueOf(editThang.getSelectedItem().toString()));
+        setNgayPhatHanh();
         if (taiLieu.getLoaiTaiLieu().equals("Sách")) {
             sach = taiLieuService.getSach(i);
 
-            System.out.println(sach.getTenTacGia());
             setSach(sach);
 
         } else if (taiLieu.getLoaiTaiLieu().equals("Tạp Chí")) {
             tapChi = taiLieuService.getTapChi(i);
             setTapChi(tapChi);
-            
+
         } else {
-            
+
             bao = taiLieuService.getBao(i);
             setBao(bao);
         }
     }
-    
+
     private void setNgayPhatHanh() {
 
         editNgay.removeAllItems();
-        for (int i = 1; i <=31; i++) {
+        for (int i = 1; i <= 31; i++) {
             editNgay.addItem(String.valueOf(i));
         }
     }
-    
+
     private void setNgayPhatHanh(int a) {
 
         editNgay.removeAllItems();
-        for (int i = 1; i <=taiLieuService.getDate(a); i++) {
+        for (int i = 1; i <= taiLieuService.getDate(a); i++) {
             editNgay.addItem(String.valueOf(i));
         }
     }
-    
+
     private void setLoaiTaiLieu() {
         for (String theLoai : taiLieuService.getTheLoai()) {
             editLoai.addItem(theLoai);
@@ -100,9 +100,9 @@ public class chiTietTaiLieu extends javax.swing.JFrame {
 
         editNgay.setVisible(false);
         editNgayField.setVisible(false);
-        System.out.println(tapChi.getThangPhatHanh());
+
         editSoPhatHanh.setValue(tapChi.getSoPhatHanh());
-        
+
         editThang.setSelectedItem(String.valueOf(tapChi.getThangPhatHanh()));
 
     }
@@ -115,7 +115,7 @@ public class chiTietTaiLieu extends javax.swing.JFrame {
 
         editSoPhatHanh.setVisible(false);
         editSoPhatHanhField.setVisible(false);
-        System.out.println(bao.getThangPhatHanh());
+
         editThang.setSelectedItem(String.valueOf(bao.getThangPhatHanh()));
         editNgay.setSelectedItem(String.valueOf(bao.getNgayPhatHanh()));
 
@@ -150,6 +150,7 @@ public class chiTietTaiLieu extends javax.swing.JFrame {
         editNgay = new javax.swing.JComboBox<>();
         editBT = new javax.swing.JButton();
         editEndBT = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -247,6 +248,13 @@ public class chiTietTaiLieu extends javax.swing.JFrame {
             }
         });
 
+        jButton3.setText("Thoát");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -279,7 +287,9 @@ public class chiTietTaiLieu extends javax.swing.JFrame {
                         .addGap(235, 235, 235)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(editEndBT, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE)
-                            .addComponent(editBT, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(editBT, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(84, 84, 84)
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(backBT, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -309,7 +319,7 @@ public class chiTietTaiLieu extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(editTenTacGiafield, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(editTenTacGia, javax.swing.GroupLayout.DEFAULT_SIZE, 52, Short.MAX_VALUE))
+                    .addComponent(editTenTacGia, javax.swing.GroupLayout.DEFAULT_SIZE, 54, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(editSoTrangField, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -327,8 +337,10 @@ public class chiTietTaiLieu extends javax.swing.JFrame {
                     .addComponent(editNgayField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(editNgay, javax.swing.GroupLayout.DEFAULT_SIZE, 55, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(editBT, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(13, 13, 13)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(editBT, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(9, 9, 9)
                 .addComponent(editEndBT, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -350,88 +362,106 @@ public class chiTietTaiLieu extends javax.swing.JFrame {
         //Sửa đây
         editBT.setVisible(false);
         editEndBT.setVisible(true);
-        
+
         editSoLg.setEnabled(true);
         editSoTrang.setEnabled(true);
         editSoPhatHanh.setEnabled(true);
-        
+
         editNXB.setEditable(true);
         editTenTacGia.setEditable(true);
         editThang.setEnabled(true);
         editNgay.setEnabled(true);
-        System.out.println(Integer.valueOf(editThang.getSelectedItem().toString()));
+
         setNgayPhatHanh(Integer.valueOf(editThang.getSelectedItem().toString()));
     }//GEN-LAST:event_editBTActionPerformed
 
     private void editEndBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editEndBTActionPerformed
         // TODO add your handling code here:
-        int check;
-        switch (taiLieu.getLoaiTaiLieu()){
-            case "Sách":{
-                check=editTaiLieu(sach);
-                break;
+
+        int confirm = JOptionPane.showConfirmDialog(chiTietTaiLieu.this, " Bạn chắc chắn muốn Sửa ");
+        if (confirm == JOptionPane.YES_OPTION) {
+            int check;
+
+            switch (taiLieu.getLoaiTaiLieu()) {
+                case "Sách": {
+
+                    check = editTaiLieu(sach);
+                    break;
+                }
+
+                case "Tạp Chí": {
+                    check = editTaiLieu(tapChi);
+                    break;
+                }
+
+                case "Báo": {
+                    check = editTaiLieu(bao);
+                    break;
+                }
+
+                default:
+                    check = 0;
+                    break;
             }
-                
-            case "Tạp chí":{
-                check=editTaiLieu(tapChi);
-                break;
+
+            if (check == 0) {
+                JOptionPane.showMessageDialog(this, "Sửa thất bại! Vui lòng thử lại.", "Thông báo", JOptionPane.ERROR_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(this, "Sửa thành công");
+                new DsTaiLieu().setVisible(true);
+                this.dispose();
             }
-                
-            case "Báo":{
-                check=editTaiLieu(bao);
-                break;
-            }
-                
-            default: 
-                check =0;
-                break;
         }
-        
-        if(check==0){
-             JOptionPane.showMessageDialog(this, "Sửa thất bại! Vui lòng thử lại.", "Thông báo", JOptionPane.ERROR_MESSAGE);
-        }else{
-             JOptionPane.showMessageDialog(this, "Sửa thành công");
-             new DsTaiLieu().setVisible(true);
-             this.dispose();
-        }
-        
+
+
     }//GEN-LAST:event_editEndBTActionPerformed
-    private int editTaiLieu(Sach sach){
-        Sach sachEdit= new Sach();
-        
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_jButton3ActionPerformed
+    private int editTaiLieu(Sach sach1) {
+        Sach sachEdit = new Sach();
+
         sachEdit.setMaTaiLieu(taiLieu.getMaTaiLieu());
-        sachEdit.setTenNhaXuatBan(taiLieu.getTenNhaXuatBan());
         sachEdit.setLoaiTaiLieu(taiLieu.getLoaiTaiLieu());
-        sachEdit.setSoBanPhatHanh(taiLieu.getSoBanPhatHanh());
-        
+
+        sachEdit.setTenNhaXuatBan(editNXB.getText());
+        sachEdit.setSoBanPhatHanh(Integer.valueOf(editSoLg.getValue().toString()));
+
         sachEdit.setSoTrang(Integer.valueOf(editSoTrang.getValue().toString()));
         sachEdit.setTenTacGia(editTenTacGia.getText());
-        
+
         return taiLieuService.editTaiLieu(sachEdit);
+
     }
-    private int  editTaiLieu(TapChi tapChi){
+
+    private int editTaiLieu(TapChi tapChi1) {
         TapChi tapChiEdit = new TapChi();
-        
+
         tapChiEdit.setMaTaiLieu(taiLieu.getMaTaiLieu());
-        tapChiEdit.setTenNhaXuatBan(taiLieu.getTenNhaXuatBan());
         tapChiEdit.setLoaiTaiLieu(taiLieu.getLoaiTaiLieu());
-        tapChiEdit.setSoBanPhatHanh(taiLieu.getSoBanPhatHanh());
-        
+
+        tapChiEdit.setTenNhaXuatBan(editNXB.getText());
+        tapChiEdit.setSoBanPhatHanh(Integer.valueOf(editSoLg.getValue().toString()));
+
         tapChiEdit.setSoPhatHanh(Integer.valueOf(editSoPhatHanh.getValue().toString()));
         tapChiEdit.setThangPhatHanh(Integer.valueOf(editThang.getSelectedItem().toString()));
         return taiLieuService.editTaiLieu(tapChiEdit);
     }
-    private int  editTaiLieu(Bao bao){
+
+    private int editTaiLieu(Bao bao1) {
         Bao baoEdit = new Bao();
-        
+
         baoEdit.setMaTaiLieu(taiLieu.getMaTaiLieu());
-        baoEdit.setTenNhaXuatBan(taiLieu.getTenNhaXuatBan());
         baoEdit.setLoaiTaiLieu(taiLieu.getLoaiTaiLieu());
-        baoEdit.setSoBanPhatHanh(taiLieu.getSoBanPhatHanh());
-        
+
+        baoEdit.setTenNhaXuatBan(editNXB.getText());
+        baoEdit.setSoBanPhatHanh(Integer.valueOf(editSoLg.getValue().toString()));
+
         baoEdit.setThangPhatHanh(Integer.valueOf(editThang.getSelectedItem().toString()));
         baoEdit.setNgayPhatHanh(Integer.valueOf(editNgay.getSelectedItem().toString()));
-        
+
         return taiLieuService.editTaiLieu(baoEdit);
     }
     /**
@@ -458,6 +488,7 @@ public class chiTietTaiLieu extends javax.swing.JFrame {
     private javax.swing.JLabel editTenTacGiafield;
     private javax.swing.JComboBox<String> editThang;
     private javax.swing.JLabel edithangField;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel3;
     // End of variables declaration//GEN-END:variables
 }
